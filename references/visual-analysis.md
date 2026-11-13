@@ -10,7 +10,7 @@ Separate three levels:
 2. **Interpreted:** what these features do—balance, rhythm, tension, spatial layering, viewing order, story implication. State interpretations as interpretations.
 3. **Possible transformation:** what the existing visual structure could *do* in a new design. Examples of mechanisms include extension, recontextualization, occlusion, role reversal, reflection, scale shift, material translation, kinetic typography, or visual metaphor.
 
-Ask what distinguishes *this particular image*. Do not automatically invent a person, doodle, giant headline, paper collage, fantasy object, or ornamental marks.
+Ask what distinguishes *this particular image*. Reinspect it when a new claim about positions, visibility, or material becomes important; do not rely on a stale mental sketch and invent nonexistent features. Do not automatically invent a person, doodle, giant headline, paper collage, fantasy object, or ornamental marks.
 
 ### Inspection checklist
 
@@ -39,18 +39,23 @@ Do not claim to have observed any image. Instead construct a creative brief from
 
 Then explore visual mechanisms using the same design dimensions—composition, spatial hierarchy, scale, contrast, material, lighting, typography, temporal cues—**without inventing an attached photograph**. Present concrete candidates; let the user shape the result.
 
-## Concept exploration that truly diverges
+## Concept discovery through collaborative dialogue
 
-When open-ended ideation is useful, offer 2–3 directions with different *design logic*. For each, provide:
+**Default:** Offer **one concrete, distinctive creative seed at a time**, grounded in an observed image feature or stated user idea. Explain the visual move in a few sentences, invite the user's reaction, and let the next turn be shaped by it. This is creative participation, not a questionnaire. Do not make the user choose between obviously compatible components.
 
-- **Premise:** the image's single organizing idea.
-- **Mechanism:** precisely which visual elements create the effect.
-- **Composition:** relative placements, primary/secondary hierarchy and critical negative space.
-- **Personality:** color, material, texture, mood, type as relevant.
-- **Why it works:** what makes it distinctive for this brief.
-- **Risk:** the likely execution problem or possible mismatch with the user.
+- Change course when the user has a more interesting hypothesis. Offer a useful synthesis or disagree with a reason, not reflexive agreement.
+- Explore unfamiliar materials, visual media and contemporary art approaches alongside typography, narrative and surreal transformations. Let a style choice emerge from its fit to the image's structure, not from a fixed list of fashionable aesthetics.
+- If the proposal is uninteresting, explicitly offer a fresh angle; do not keep nudging the user toward one preferred solution.
+- Multiple directions are appropriate **when requested** or when comparison genuinely helps. Show a small representative spread of distinct mechanisms and their tradeoffs, then recommend without monopolizing the decision.
+- Keep abandoned but promising alternatives lightly available for later; do not carry them into the final prompt without renewed agreement.
 
-Do not propose 3 directions that differ only by palette or camera filter. Avoid style taxonomies as substitutes for creativity. If the user already decided, expand that decision instead of restarting ideation.
+A strong idea has an observable mechanism, an image-specific reason to exist, and a visually compelling result. Conceptual justification alone does not make a complex mechanism attractive or executable.
+
+## Knowing when to converge
+
+After a few meaningful exchanges, check whether the main concept has coalesced. **Announce the approaching handoff before it happens**; summarize the central visual relationship and at most one important open issue. The user may reopen, combine, or reject. Do not continue generating questions just to fill time.
+
+A separate design-detail discussion can then settle essential framing, material, hierarchy, text and spatial logic. Again **proactively converge** to a short, coherent execution design. Avoid specifying every minor detail or running a lengthy fixed analysis ritual.
 
 ## Interpret feedback without overfitting
 
@@ -63,4 +68,4 @@ A user's preference on one project does not become a global visual style rule. T
 
 ## Hand-off to design decisions
 
-After selection, summarize **P0 essentials**, **P1 supporting visual choices**, and **P2 optional refinements**, plus protected source elements. These are the inputs to the execution prompt, not the previous exploratory conversation.
+After concept convergence and then execution-design convergence, summarize **P0 essentials**, **P1 supporting choices**, and any **P2 options** actually worth preserving. Maintain a lightweight decision ledger: **agreed / tentative / rejected / already successful**. Do not reintroduce superseded elements. These are the inputs to the execution prompt, not the previous exploratory conversation.

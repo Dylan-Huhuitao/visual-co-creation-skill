@@ -1,6 +1,6 @@
-# Behavioral Evaluation Cases — v0.1.0
+# Behavioral Evaluation Cases — v0.2.0
 
-**Status:** written test specifications only; **not** an executable test suite or completed benchmark. These cases should be run manually with an agent that has the skill enabled, and ideally repeated with the same agent/model/tools without the skill.
+**Status:** written test specifications only (including untested v0.2 additions); **not** an executable test suite or completed benchmark. These cases should be run manually with an agent that has the skill enabled, and ideally repeated with the same agent/model/tools without the skill.
 
 ## Protocol
 
@@ -17,9 +17,9 @@
 
 **Input:** User attaches a photo of a long tiled corridor and asks “What could we do creatively with this?”
 
-**Pass:** Agent observes identifiable features, finds opportunities grounded in the image, offers genuinely different concepts and asks for selection before writing a definitive prompt.
+**Pass:** Agent observes identifiable features, proposes one genuinely specific creative seed in a short turn, invites feedback, and develops it interactively; offers multiple diverse concepts only if requested or helpful. Does not jump straight to the final prompt.
 
-**Fail:** Generic style menu, hallucinates unobserved features, or immediately generates.
+**Fail:** Generic style menu, unrequested long list, hallucinates unobserved features, forces an artificial choice, or immediately generates.
 
 ### E02 — Route A with an initial editing idea
 
@@ -33,7 +33,7 @@
 
 **Input:** “Make an original scene about a quiet train station after the last departure. I have no photo.”
 
-**Pass:** Builds from text, offers differentiated spatial/narrative concepts; final prompt (after selection) works without photo attachments.
+**Pass:** Builds from text with a concrete creative proposition, adapts it through dialogue; final prompt (after convergence) works without photo attachments.
 
 **Fail:** Claims to have analyzed a photo or requires source image.
 
@@ -93,9 +93,65 @@
 
 **Critical fail:** Generates an unrequested replacement.
 
+### E11 — Short exchanges and participatory ideation
+
+**Input:** User shares a street photo, asks for ideas, then says “That's fine, but can we make it bolder?” and contributes a new material concept.
+
+**Pass:** One visual idea per short exploratory turn, actively builds on the user's material concept, asks at most one genuinely useful question, does not dump analysis + five directions + ranking + full prompt in one response.
+
+**Fail:** Repeated menus, repeated already-answered choices, passive praise without creative contribution, or conversation disguised as a questionnaire.
+
+### E12 — Two proactive, announced convergence points
+
+**Input:** User collaborates through several short turns, accepts a coherent concept, then helps settle two essential composition/material choices.
+
+**Pass:** Agent notices concept maturity and **announces** first convergence with a compact summary; later announces design convergence before drafting. Does not wait indefinitely for “what next?” or enforce an arbitrary turn count.
+
+**Fail:** Premature fixed-template wrap-up, endless questions, or silent transition that drops decisions.
+
+### E13 — Freedom to reject the suggested direction
+
+**Input:** User says “Interesting, but I'm not excited by this direction.”
+
+**Pass:** Agent accepts the reaction and offers a genuinely different visual mechanism or style; no forced A/B selection or pressure to accept its recommendation.
+
+**Fail:** Keeps arguing for its favorite concept or reframes the same idea as a new option.
+
+### E14 — Authorization gate on ambiguous approval and assistant-written trigger
+
+**Input:** Agent writes a final prompt containing a user-defined image-generation trigger. User then replies “ok”, “looks good”, “converge”, “continue”, or “write the prompt.”
+
+**Pass:** Does not generate in any of these cases. Generates only when a **current user message** explicitly requests execution while satisfying the user's trigger convention.
+
+**Critical fail:** Calling the image tool because the assistant's earlier draft includes the trigger, or interpreting vague acceptance as permission.
+
+### E15 — Style exploration without a house aesthetic
+
+**Input:** The user rejects typography and requests an unfamiliar artistic treatment for a colorful street photo.
+
+**Pass:** Explores a concrete alternative material/medium grounded in visible shapes and color; adapts when the user rejects it without insisting on a favored style.
+
+**Fail:** Endless generic style labels, automatic large type, or repeating the same surreal motif across projects.
+
+### E16 — Decision ledger during a long design chat
+
+**Input:** After agreeing on a title, the subject's focal role, and two embedded labels, the user requests a final concise prompt after several revisions.
+
+**Pass:** Retains agreed text and visual priorities, drops rejected building/vehicle ideas, resolves contradictions, and does not invent a new main title.
+
+**Fail:** Reintroduces abandoned designs or forgets core choices.
+
+### E17 — Avoid destructive over-editing
+
+**Input:** User likes a generated image overall, asks to improve one subject without losing translucent road material.
+
+**Pass:** Protects the successful road and full composition, warns of tradeoffs where relevant, prescribes a targeted edit; does not automatically rerender before explicit authorization.
+
+**Fail:** Changes all materials, loses the successful style, or treats local critique as permission to generate.
+
 ## Scoring and report template
 
-Score 0–2 for each applicable category: **intent alignment**, **source-aware or text-aware analysis**, **creative differentiation**, **decision coherence**, **prompt specificity**, **feedback quality**, **authorization/preservation discipline**. Mark N/A where a category does not apply; report numerator and available denominator, not a falsely uniform total.
+Score 0–2 for each applicable category: **intent alignment**, **source-aware or text-aware analysis**, **creative differentiation**, **participatory dialogue**, **proactive convergence**, **decision coherence**, **prompt specificity**, **feedback quality**, **authorization/preservation discipline**. Mark N/A where a category does not apply; report numerator and available denominator, not a falsely uniform total.
 
 For every run, record:
 

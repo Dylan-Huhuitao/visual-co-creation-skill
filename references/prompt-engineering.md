@@ -13,6 +13,7 @@ Before drafting, collect:
 - Text to render, if any, including wording, capitalization and placement.
 - Essential keep/change/avoid boundaries.
 - Known execution risks.
+- Lightweight decision ledger: agreed, tentative, rejected, already successful. Exclude rejected and superseded choices, even if they appeared in a previous prompt.
 
 Exclude discarded variants and obsolete feedback. If the user has not made a selection, do not pretend that a chosen concept exists.
 
@@ -43,7 +44,7 @@ Weak: “Make it editorial, sophisticated and cinematic, with creative typograph
 
 Strong: “Set a single condensed headline across the upper third; let the subject pass in front of two letters while the remaining letters sit behind the foreground railing. Keep the bottom third free of supporting copy.”
 
-A concept sentence may establish direction; do not let it replace decisions the model actually needs to execute.
+A concept sentence may establish direction; do not let it replace decisions the model actually needs to execute. Avoid reader-experience narration (e.g., “at first glance the viewer discovers ...”): specify the spatial, optical, and typographic arrangement that produces the effect. Do not impose arbitrary numeric precision.
 
 ## Step 4 — Respect physical causal chains
 
@@ -59,13 +60,13 @@ Examples of intrinsically difficult tasks: many independent objects combining in
 - **P1:** important to quality or coherent structure.
 - **P2:** optional refinements.
 
-Remove duplicated instructions, abandoned aesthetics, subjective praise, and phrases that explain why earlier versions were liked. A smaller coherent prompt is preferable to a longer contradictory one.
+Remove duplicated instructions, abandoned aesthetics, subjective praise, repeated P0 lists, and phrases that explain why earlier versions were liked. Do not pin down every cosmetic detail; preserve room for model execution. A smaller coherent prompt is preferable to a longer contradictory one. Before finalizing, check that the visual mechanism can produce an appealing image rather than merely satisfying a complicated concept.
 
 ## Step 6 — Delivery and authorization
 
 Deliver the complete copyable prompt as a finished artifact, usually after the user approves the concept. If Route A, remind the user which image to attach. If Route B, no attachment is necessary unless requested.
 
-**Do not call the image tool merely because the prompt is complete or because the assistant itself has written an imperative inside it.** The user must explicitly request generation or editing; respect any user-defined authorization convention.
+**Hard gate:** Do not call an image tool merely because the prompt is complete, contains an imperative, or includes a trigger phrase that *the assistant* placed in it. “Ok,” “continue,” “try this,” “converge,” and “write the prompt” do not authorize generation. The **current user request** must explicitly authorize generation/editing, and any user-defined trigger convention must be fulfilled there. An explicitly user-submitted executable prompt with their required trigger qualifies. When in doubt, deliver only the authorized design/prompt work, not a speculative render.
 
 For follow-up edits, rewrite the prompt so that it is independently usable; do not silently carry forward instructions the user rejected.
 
@@ -78,4 +79,4 @@ For follow-up edits, rewrite the prompt so that it is independently usable; do n
 - Are original identity and previously successful elements protected appropriately?
 - Has historical commentary been removed?
 - Is the task realistically achievable with the host model, or does it require a multi-step/other-tool strategy?
-- Has the user actually authorized image generation, as distinct from asking to draft a prompt?
+- Did the user explicitly authorize image generation **in the current request**, satisfying their established trigger if any, as distinct from liking a concept or requesting a prompt?

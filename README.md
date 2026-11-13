@@ -4,45 +4,36 @@
 
 **中文简介：** 一个以用户审美判断为核心的 Agent Skill。它帮助 AI 主动发现视觉可能性，将用户选择转化成清晰可执行的生图／改图提示词，并通过反馈逐步修正作品。它不是某一种风格模板，也不是提示词大全。
 
-> **Status:** v0.1.0 — Experimental. This project is public for inspection; a reuse license has not been selected.
+> **Status:** v0.2.0 — Experimental. This project is public for inspection; a reuse license has not been selected.
 
 ## Why
 
 A model may know many approaches to composition, visual narrative, typography, texture, lighting and design. A difficult step is **selecting the right approach for this image, this idea and this person**, then executing and evaluating it faithfully.
 
-This skill experiments with a collaborative process for that selection. The user remains the creative authority; the agent supplies analysis, imaginative alternatives, decision support, actionable prompts and candid critique.
+This skill experiments with a **short-turn, co-discovery dialogue**. The agent contributes one concrete visual move at a time, invites the user's changes, and **proactively announces convergence** when the concept and later the execution design are sufficiently mature. The user remains the creative authority; the agent supplies creative contributions, judgments, actionable prompts and candid critique.
 
 ## Two ways to start
 
-**A. Image-led redesign / 图片二创：**
+**A. Image-led redesign / 图片二创：** Start from an actual image. The agent inspects its distinctive structure and revisits it when new spatial decisions require verification.
 
-1. You provide a photograph or image, optionally with an editing idea.
-2. The agent studies its distinctive structures and offers creative directions.
-3. You choose or revise a direction until the concept is settled.
-4. The agent writes a complete editing prompt; you review/copy it and submit it with the source image when you want to generate.
-5. You inspect the result and continue targeted revisions until satisfied.
+**B. Idea-led creation / 文字原创：** Start from a textual idea, with no invented or required photograph.
 
-**B. Idea-led creation / 文字原创：**
+Both follow a flexible rhythm:
 
-1. You provide an initial text-to-image idea; no source photo is necessary.
-2. The agent develops and diversifies the concept.
-3. You select or revise a direction.
-4. The agent writes a complete text-to-image prompt; you explicitly submit it for generation.
-5. You evaluate and refine the result.
+**Brief creative dialogue → first proactive concept convergence → a few decisive design details → second proactive design convergence → concise complete prompt → explicitly authorized generation → critique/refinement.**
 
-Both routes share the same key checkpoints: **creative exploration → user choice → finalized visual decisions → prompt → explicit generation → critique → iteration**.
-
-The workflow adapts to the task: a fully specified request should not be slowed down by unnecessary proposals.
+Not every task needs every stage. The agent can reopen exploration if a new idea improves the work, and skips discovery when the user already has a complete brief.
 
 ## Principles
 
-- **Style-agnostic:** no permanent “best” style, density, palette or composition.
-- **Creative contribution:** propose distinct visual *mechanisms*, not just superficial variants.
-- **User-led:** the user decides what is worth making.
-- **Decision-first prompting:** final prompts contain current actionable visual decisions, not discarded brainstorming.
-- **Preservation-aware editing:** distinguish what to keep, change, and avoid.
-- **Permission-aware:** drafting a prompt alone never triggers image generation.
-- **Honest limits:** model failures may require tools or strategies beyond longer prompts.
+- **Co-create, don't quiz:** Default to one imaginative, concrete visual idea per short message; invite correction, synthesis or a wholly different direction.
+- **Source-aware, style-agnostic:** Use the image's actual composition and broad visual/artistic knowledge; do not impose giant typography, surrealism or any other default.
+- **Proactive but not controlling:** Announce when the concept/design is ripe for convergence; the user can reopen or refuse it.
+- **Adaptive tone:** Humor, warmth and emoji only when the user welcomes them; remain concise and substantive.
+- **Decision memory:** Preserve agreed/working/rejected choices across turns; protect successful visual features during revisions.
+- **Professional prompts:** Give precise, stand-alone, non-repetitive execution instructions, without overconstraining minor details.
+- **Strict consent:** Prompt writing, “ok,” “continue,” or a trigger phrase written **by the agent** never independently authorizes rendering. The user's current explicit generation request and any special trigger are required.
+- **Candid limits:** Complex physical logic or repeated failures may call for simpler methods, targeted edits, or abandoning an idea rather than more prompt verbosity.
 
 ## Repository structure
 
@@ -69,7 +60,7 @@ Install or load this repository as a skill in a host agent that supports the [Ag
 
 Try prompts such as:
 
-- “Here is a street photograph. Find three genuinely different design directions.”
+- “Here is a street photograph. Let's explore one interesting visual idea at a time.”
 - “我没有参考图，想做一张关于初雪的海报，先帮我探索创意。”
 - “I chose the spatial-typography concept. Write the final prompt, but don't generate yet.”
 - “Compare this output with the agreed concept; preserve the parts that work.”
@@ -78,9 +69,9 @@ For a self-contained image prompt, explicitly provide any required source/refere
 
 ## Scope and evidence
 
-The initial methodology draws mainly on a limited set of image-led, photography/editorial-design collaborations and iterative prompting experience. **Text-first creation, reliable multi-object physical simulation, generalization across users, and across-model performance are not yet established.** v0.1.0 is a usable specification for experimentation, not a validated claim of higher image quality or stable success rates.
+V0.2 incorporates qualitative observations from a small number of image-led collaborations, including a successful short-turn exploration, a failed over-complex spatial design, and a material-style exploration with regressive edits. These are **design hypotheses, not benchmark results**. Text-first creation, generalization across users/models, and generation authorization compliance still require real-world tests. This specification does not claim measured superiority.
 
-See [evaluations/evaluation-cases.md](evaluations/evaluation-cases.md) for reproducible behavioral scenarios. We welcome concrete observations, failures and improvements, without needing to publish private creative chat logs or original photographs.
+See [evaluations/evaluation-cases.md](evaluations/evaluation-cases.md) for 17 manual behavioral scenarios (written only; none are passed automatically). We welcome concrete observations, failures and improvements, without needing to publish private creative chat logs or original photographs.
 
 ## Licensing
 

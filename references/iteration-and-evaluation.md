@@ -47,7 +47,9 @@ First identify:
 
 Then produce a new self-contained prompt when the user asks for it. Never make an unrequested image edit in the course of critique. After the revised result is provided, repeat evaluation; check whether previous successes survived.
 
-Avoid endless optimization of low-impact details. Stop when the user is satisfied or when further work cannot reliably help.
+Avoid endless optimization of low-impact details. Before changing an already attractive result, ask whether the proposed local improvement risks breaking the material/style harmony that made it work. Prefer preserving the winning version rather than treating every request as a full rerender. If new tries repeatedly become less visually convincing, suggest a style-level rethink, a technical alternative, or stopping.
+
+The user need not optimize every artifact. A clearly successful style or visual mechanism may be more valuable than polishing every texture.
 
 ## Memory and evidence
 

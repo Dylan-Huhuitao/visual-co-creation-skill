@@ -1,61 +1,50 @@
-# Synthetic Walkthroughs: Both Entry Routes
+# Synthetic Walkthroughs: Brief Dialogue, Two Entry Routes
 
-These are **fictional demonstrations** of expected agent behavior. No images were generated or evaluated for these examples. They are not copies of private user chats.
+**Fictional examples only.** No images were generated or benchmarked. These do not reproduce private chats.
 
-## Route A — Photograph supplied, editing idea optional
+## Route A — Source photo, exploration to two convergences
 
-**User input:** A photo of a quiet public-library stairwell with a zigzag steel handrail and late-afternoon sunlight. “Make this feel like an unusual editorial poster.”
+**User:** [Photo of a rainy tram stop with one bright umbrella.] “Can we make an unusual poster?”
 
-**Analysis (observation):** The railing creates a repeated diagonal; the stair treads create horizontal rhythm; sunlight casts long shadows; the top landing has negative space.
+**Assistant:** “The umbrella is the only clean circle among all those straight wet rails. What if its reflection became a second, impossible umbrella beneath the pavement—like a small opening to another weather system? Interesting, or too surreal?”
 
-**Possible concepts:**
+**User:** “Interesting, but I want to keep the photographic mood. Maybe only the reflection changes.”
 
-- **A / Folded Path:** The railing shadow becomes a continuous drawn path through a restrained headline. Main mechanism: one existing diagonal links physical architecture and type.
-- **B / Split Exposure:** The stairwell is visually separated into two overlapping time-of-day exposures. Main mechanism: the same geometry with two lighting states.
-- **C / Stair Atlas:** Step edges become a measured editorial grid with small labels. Main mechanism: architectural repetition as information architecture.
+**Assistant:** “Yes: leave the real umbrella untouched; let the reflection reveal a bright summer sky instead of the gray station. The contrast can stay subtle. I think the concept is ready; we can now settle its placement and whether to use text.”
 
-These options differ in mechanism, not merely palette.
+**User:** “No text. Keep it minimal.”
 
-**User:** “Choose A, but keep the space natural and use only one major title.”
+**Assistant:** “Design convergence: preserve the entire rainy station and umbrella; modify only the puddle reflection with a physically aligned alternate sky; keep everything else subdued. I'll turn that into a complete edit prompt when you ask.”
 
-**Concept locked:** One editorial headline interacts with the physical railing and its cast shadow. Preserve the stairwell's architecture and camera perspective. No extra people or elaborate collage.
+**User:** “Write the prompt.”
 
-**Final editing prompt (example):**
+**Assistant (prompt only, no render):** “Edit the attached rainy tram-stop photograph. Preserve the framing, rails, umbrella, wet pavement, pedestrians and overcast lighting. In the puddle directly beneath the umbrella, replace only the reflected gray sky with a small reflection of bright summer-blue sky and softly lit clouds. Match the puddle's viewing angle, ripple distortion, border and wet-surface reflections; the real sky above remains overcast. Keep the effect limited to the puddle. No typography, other surreal elements, frame or watermark.”
 
-> Edit the attached library stairwell photograph into a vertical editorial poster. Keep the original stair geometry, handrail, concrete texture, late-afternoon light and camera viewpoint. Place a single large condensed title, “BETWEEN FLOORS,” in the upper landing's negative space. Integrate the title spatially with the existing diagonal rail: one letter is partially occluded by the rail while the rail's shadow continues across the title area. Use soft off-white lettering and preserve the source photo's natural color. Maintain readable perspective and a clear viewing hierarchy: architectural diagonal first, title second, stair rhythm third. Do not add people, secondary headlines, new structures, decorative icons or unrelated graphic textures.
+**User:** “Ok.”
 
-**Execution checkpoint:** The agent delivers the prompt. The user reviews/copies it and explicitly submits it with the original image when they wish to generate. The prompt itself is not an execution request.
+**Assistant:** Discusses the prompt or next action **without generating**, because “Ok” is not an explicit execution request.
 
-**Evaluation sketch:** Check title legibility, rail occlusion, source preservation and whether the diagonal relationship really works. A fake floating title is a conceptual failure even if the poster is attractive.
+**Later:** If the user explicitly submits the prompt with the required generation authorization, the agent may invoke the image tool.
 
-## Route B — Only an initial idea, no source image
+## Route B — Text-first concept without a photo
 
-**User input:** “I want to create an image about a city starting to breathe again after the rain. I don't have a reference photo.”
+**User:** “I want an image about a quiet library at midnight. No photo.”
 
-**Brief:** City after rainfall, transition toward openness; the user has not fixed medium, time of day, typography or visual density. Do not pretend to inspect a nonexistent image.
+**Assistant:** “What if the only visible light came from the spaces between closed books, turning the shelves into a softly glowing city skyline? It could be dreamy without using characters. Does that interest you?”
 
-**Possible concepts:**
+**User:** “Yes. Paper cutouts, not photorealism.”
 
-- **A / Exhale:** A street perspective opens from a compressed dark foreground into a wide, luminous sky. Mechanism: spatial expansion.
-- **B / Waterline Letters:** The words “AFTER RAIN” emerge only through discontinuous reflected lettering on wet pavement. Mechanism: typography recovered from reflection.
-- **C / Stillness in Motion:** Streaked traffic traces contrast with one perfectly still puddle reflecting an unbroken sky. Mechanism: temporal contrast.
+**Assistant:** “Then we have the core: a midnight library made from deep-blue layered paper; warm windows are narrow gaps between book spines. Concept is settled. I suggest one more decision about viewing angle, then I'll summarize the construction.”
 
-**User:** “Choose C. No text and no people. Make it photographic, not a surreal illustration.”
+**User:** “Straight on.”
 
-**Concept locked:** A photographic street with motion-streaked passing traffic in the distance, one undisturbed reflective puddle in the foreground, no human figures or added typography.
+**Assistant:** “Design convergence: frontal shelves as a paper skyline, dark indigo layers, warm light from irregular spine gaps, no humans or text. Ready for a prompt.”
 
-**Final text-to-image prompt (example):**
+**When asked for the prompt:** Write a self-contained **text-to-image** prompt. Do not claim a source image exists; do not generate until authorized.
 
-> Create a vertical 3:4 photorealistic photograph of a city street just after rainfall, viewed from a low but natural sidewalk perspective at blue hour. The background carries slender horizontal vehicle light trails, while one shallow foreground puddle remains perfectly still and reflects an unobstructed patch of pale evening sky. Use the contrast between motion in the street and stillness in the puddle as the sole organizing idea. Make the puddle the first focal point, light trails the second, and subdued architecture the supporting context. Keep the paving materials, water reflection and atmospheric haze physically believable. Use deep blue-gray shadows with restrained amber highlights. No people, captions, poster typography, collage elements or surreal objects.
+## What these examples test
 
-**Execution checkpoint:** The agent delivers the prompt. The user explicitly submits it for generation **without attaching an imaginary source image**.
-
-**Evaluation sketch:** The puddle must clearly feel still relative to traffic. If both are blurred, the selected contrast fails. If the model adds an unrelated dramatic figure, the user constraint fails.
-
-## What these two routes demonstrate
-
-- Route A begins with **observed visual structure** and protects the source.
-- Route B begins with a **textual creative seed** and does not invent a reference.
-- Both create meaningful alternatives before finalizing a concept, then converge on a concrete prompt.
-- Neither path requires revealing private reasoning or publishing iterative chat logs.
-- Neither example claims that the image model will reliably achieve the prompt.
+- One image-specific or brief-specific visual move per conversational turn, not an unsolicited menu.
+- User feedback actually changes the concept, and the agent proactively marks both convergence points.
+- Few impactful decisions, concise executable prompts, and permission to switch approaches.
+- Prompt drafting, user approval, and **user-authorized generation** remain separate.
