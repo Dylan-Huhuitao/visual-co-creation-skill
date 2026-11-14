@@ -1,82 +1,81 @@
-# Decision-First Prompt Construction
+# Prompt Compiler — Decision to Pixels
 
-A final image prompt is an **execution specification**, not a narrative of how the concept was discovered. It must be usable in a fresh context with the required image attachments and must not depend on remembered previous drafts.
+Load when drafting, optimizing or self-checking a **final image prompt**. A final prompt is a compact **execution specification**, not a transcript of how the idea emerged. It must make sense in a fresh conversation with the stated attached source(s).
 
-## Step 1 — Freeze the current concept
+## Step 1 — Freeze the decision contract
 
-Before drafting, collect:
+Assemble the current user's decisions before writing:
 
-- Chosen premise and central visual mechanism.
-- Intended format and composition.
-- P0/P1/P2 constraints.
-- Exact source/reference roles.
-- Text to render, if any, including wording, capitalization and placement.
-- Essential keep/change/avoid boundaries.
-- Known execution risks.
-- Lightweight decision ledger: agreed, tentative, rejected, already successful. Exclude rejected and superseded choices, even if they appeared in a previous prompt.
+```text
+CORE    one indispensable visual relationship or goal
+KEEP    up to three important source invariants or previously successful features
+CHANGE  up to three intended transformations
+AVOID   rejected decisions and demonstrated failure modes (only relevant ones)
+SOURCE  original photo reconstruction / selected generated edit / style-only reference / insert / text-only
+TEXT    exact requested spelling, capitalization, priority and placement (if any)
+```
 
-Exclude discarded variants and obsolete feedback. If the user has not made a selection, do not pretend that a chosen concept exists.
+This is an **internal ledger**, not a form the user must fill out. Use the latest decisions, not old drafts. A newer instruction can reopen an earlier keep/avoid item.
 
-## Step 2 — Choose prompt type
+## Step 2 — Choose source contract
 
-### A. Editing an existing image
+**Fresh image from an original photo:** explicitly name the supplied original as the base, what identity and composition remain recognizable, and what can be reinterpreted.
 
-Identify the **specific attached image as the edit base**. Distinguish:
+**Local edit of a selected generated result:** name **that** result as the edit base, specify only the changed region/objects, and lock the selected successful styling/composition. Do not accidentally use the original.
 
-- **Keep:** identity-critical structures, object count/positions, typography, camera perspective or other protected features.
-- **Change:** exact subject/region/relationships to alter.
-- **Add:** new elements and how they physically/spatially connect.
-- **Avoid:** likely unwanted changes that would violate the brief.
+**Reference-only style:** identify which image is a style/composition/technical reference; specify transferable visual grammar, not incidental source subjects, words or signatures.
 
-Do not refer to “V2” or “the good parts we discussed” unless a particular supplied image is explicitly identified as that version. A new generation from a source photo is not equivalent to a targeted edit of an already successful generated result.
+**Text-first creation:** specify subjects, material, visual relations and framing; do not invent a reference image.
 
-### B. Creating an image from a text idea
+## Step 3 — Compile in descending importance
 
-State subject, environment, action or visual metaphor, composition, hierarchy, lighting, materials, medium, text and constraints as needed. **Do not require a photo that does not exist.**
+Include only fields relevant to the brief, roughly in this order:
 
-## Step 3 — Describe relationships rather than adjectives
+1. **Input, intended output, and keep/change boundary.**
+2. **Core visual event:** the primary imageable relationship and focal hierarchy.
+3. **Essential execution geometry:** location, scale, perspective, occlusion, interaction and material/lighting behavior that determine whether the concept works.
+4. **Exact user text:** wording, capitalization, placement, visual weight when specified.
+5. **Few relevant avoids:** demonstrated failure risks and destructive side effects.
 
-Prefer observable arrangements: where, how large, which layer, which object occludes another, where the eye moves, how text meets architecture, which region receives light, and which surface carries a shadow.
+Use language a renderer can translate into visible pixels. Describe **what it should look like and how objects relate**, not why the concept is profound or what viewers should feel at first glance. Define the materials and style at the level that changes visible results, without dictating every highlight, leaf or stripe.
 
-Example:
+## Step 4 — Information-density deletion pass
 
-Weak: “Make it editorial, sophisticated and cinematic, with creative typography.”
+Before delivery, delete or merge:
 
-Strong: “Set a single condensed headline across the upper third; let the subject pass in front of two letters while the remaining letters sit behind the foreground railing. Keep the bottom third free of supporting copy.”
+- Prior discussion, motivation, praise, abandoned alternatives and superseded versions.
+- Repeated “highest priority,” redundant clauses and generic forbidden-style catalogs.
+- Invented numeric precision and details the user did not choose.
+- Instructions unlikely to change observable output, or likely to compete with the focal mechanism.
+- Ambiguous sensory adjectives not tied to material, lighting, color, composition or stroke behavior.
 
-A concept sentence may establish direction; do not let it replace decisions the model actually needs to execute. Avoid reader-experience narration (e.g., “at first glance the viewer discovers ...”): specify the spatial, optical, and typographic arrangement that produces the effect. Do not impose arbitrary numeric precision.
+Ask for each sentence: **“If I delete this, do I lose a meaningful visible requirement?”** Keep an instruction only if it materially changes the target image, protects user intent, or prevents a known serious failure. No mandatory paragraph count or word limit; complex tasks can legitimately need more.
 
-## Step 4 — Respect physical causal chains
+**Complexity budget is goal-dependent**, not fixed. Silhouette legibility may need simple shapes; an experimental maximalist poster may require density. Do not import generic requirements like three colors, 70% whitespace or one font.
 
-If the effect depends on geometry, specify **emitter → physical object → receiving surface → camera** and the relevant viewpoint, occlusion and scale relations.
+## Important failure mode: two visual media in one small object
 
-Be explicit about uncertainty. Numbers are useful when measured or supported by references; invented centimeter-level precision can create contradictions. A reference diagram or controlled compositing workflow may be more reliable than another page of prose.
+“Half oil painting, half real” can be misread as **two colors**, a smooth 3D material, or a decorative overlay. When essential, describe the **contrasting physical surfaces**: visibly piled pigments, raised directional brush ridges and irregular painted edges **versus** thin translucent biological petals and photographic microtexture, on the same connected flower. Keep hue consistent if color splitting is not intended.
 
-Examples of intrinsically difficult tasks: many independent objects combining into exact shadows; pixel-precise edits; text-heavy typography; multiple reflections with physically consistent source and viewing direction.
+This does **not** guarantee the generator can perform precise local material segmentation. After repeated misses, diagnose capability or method, not automatically a missing paragraph of instructions.
 
-## Step 5 — Prioritize and simplify
+## Optional compact prompt shapes (not mandatory templates)
 
-- **P0:** the image would fail the user's intent without this.
-- **P1:** important to quality or coherent structure.
-- **P2:** optional refinements.
+**Original-photo reconstruction:** “Use the attached original [subject/photo] as the edit target. Preserve [3 concrete invariants]. Reinterpret [region/content] as [one precise visual mechanism and chosen style/material]. Place [focal relationship, key occlusion]. Keep [exact text]. Avoid [few known failures].”
 
-Remove duplicated instructions, abandoned aesthetics, subjective praise, repeated P0 lists, and phrases that explain why earlier versions were liked. Do not pin down every cosmetic detail; preserve room for model execution. A smaller coherent prompt is preferable to a longer contradictory one. Before finalizing, check that the visual mechanism can produce an appealing image rather than merely satisfying a complicated concept.
+**Selected-result local edit:** “Edit the attached [selected result], not the original source. Preserve [already successful regions/style/text]. Change only [local elements] to [visible target relationship]. Maintain [crucial contacts/occlusions]. Leave [protected details] unchanged.”
 
-## Step 6 — Delivery and authorization
+**Text-first:** “[Subject] in [setting/medium], arranged as [central geometry and action]; [material/light/hierarchy]. Include [exact text if any]. Avoid [only critical exclusions].”
 
-Deliver the complete copyable prompt as a finished artifact, usually after the user approves the concept. If Route A, remind the user which image to attach. If Route B, no attachment is necessary unless requested.
+All are adaptable; a truly simple task may require only two sentences.
 
-**Hard gate:** Do not call an image tool merely because the prompt is complete, contains an imperative, or includes a trigger phrase that *the assistant* placed in it. “Ok,” “continue,” “try this,” “converge,” and “write the prompt” do not authorize generation. The **current user request** must explicitly authorize generation/editing, and any user-defined trigger convention must be fulfilled there. An explicitly user-submitted executable prompt with their required trigger qualifies. When in doubt, deliver only the authorized design/prompt work, not a speculative render.
+## Final preflight
 
-For follow-up edits, rewrite the prompt so that it is independently usable; do not silently carry forward instructions the user rejected.
+- Correct source image role? Actual source attached/identified?
+- Does every indispensable CORE/KEEP/TEXT constraint survive the compression?
+- Are spatial and material relations internally coherent and observable?
+- Have rejected directions and unrequested extra details been excluded?
+- Is the final prompt independently executable without old chat references?
+- Is this **prompt-only** or a genuinely **authorized execution** request? An assistant-written trigger inside this prompt is **not** permission to call an image tool.
 
-## Preflight checklist
-
-- Is it clear which route is active and which image, if any, is the edit base?
-- Does the prompt implement the **selected**, not merely proposed, concept?
-- Are key positions, sizes, overlap and visual hierarchy actionable?
-- Are lighting, typography and causal mechanics consistent?
-- Are original identity and previously successful elements protected appropriately?
-- Has historical commentary been removed?
-- Is the task realistically achievable with the host model, or does it require a multi-step/other-tool strategy?
-- Did the user explicitly authorize image generation **in the current request**, satisfying their established trigger if any, as distinct from liking a concept or requesting a prompt?
+Deliver the copyable prompt only when asked. Even an otherwise perfect prompt never overrides the image-tool authorization gate.

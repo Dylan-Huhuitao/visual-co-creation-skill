@@ -1,71 +1,57 @@
-# Visual Analysis & Creative Discovery
+# Visual Evidence, Image Roles & Reference Analysis
 
-Use this reference when an image is supplied or when creative direction is still open. The goal is to discover **visual relationships that could support a concept**, not to catalog nouns or force one recognizable design style.
+Load when a photo, an image-based critique, or reference images materially affect the result. Inspect real image content; never infer pixels solely from filenames or past assistant descriptions.
 
-## Route A: the image exists
+## Determine the role of each image
 
-Separate three levels:
+| Role | Goal | Boundary |
+| --- | --- | --- |
+| **Original edit target** | Rebuild or modify the recognizable source photo | Preserve user-specified identities, framing, relationships; change only what is allowed. |
+| **Generated edit target** | Refine an existing selected result | Preserve its successful composition and styling unless explicitly reopened. |
+| **Style reference** | Learn a medium, visual grammar, or color approach | Do not assume its subject, exact layout, captions, signature, or logo should be copied. |
+| **Composition reference** | Learn arrangement, scale, hierarchy, or rhythm | Carry over principles, not the whole image or unrelated content. |
+| **Supporting insert** | Bring a named object/fragment into a new scene | Preserve the requested object's identifiable traits and role. |
+| **Geometry reference** | Understand lighting, perspective, occlusion, or construction | Transfer only the relevant technical relationship. |
 
-1. **Observed:** what is visually verifiable—subject, framing, shapes, text, leading lines, material, shadow, reflections, color, depth, repetitions, empty areas.
-2. **Interpreted:** what these features do—balance, rhythm, tension, spatial layering, viewing order, story implication. State interpretations as interpretations.
-3. **Possible transformation:** what the existing visual structure could *do* in a new design. Examples of mechanisms include extension, recontextualization, occlusion, role reversal, reflection, scale shift, material translation, kinetic typography, or visual metaphor.
+One image may have several explicitly stated roles; a set of images does not imply all are equal-weight edit targets. When the distinction materially changes the result and context cannot resolve it, clarify that specific ambiguity.
 
-Ask what distinguishes *this particular image*. Reinspect it when a new claim about positions, visibility, or material becomes important; do not rely on a stale mental sketch and invent nonexistent features. Do not automatically invent a person, doodle, giant headline, paper collage, fantasy object, or ornamental marks.
+## Observe accurately
 
-### Inspection checklist
+Record only features actually visible:
 
-- **Identity:** which landmarks, subjects, texts, colors, relationships or accidental details must remain recognizable?
-- **Geometry:** where are dominant lines, curves, frames, axes, vanishing points, and negative space?
-- **Depth:** what is foreground/middle/background, where do surfaces and objects overlap, and what can or cannot occlude something?
-- **Hierarchy:** which elements dominate first glance, and which support a second look?
-- **Light/material:** where are light sources, cast shadows, highlights, reflections, visible texture?
-- **Narrative:** is there an inherent action, contrast, or implied before/after? Not every image needs a story.
-- **Typography:** if relevant, should text interact with the photo's space rather than simply float in an unused corner?
+- **Subjects:** identifiable objects, exact requested text, defining features and colors.
+- **Geometry:** cropping, dominant axes/curves, vanishing points, modular framing, scale, negative space.
+- **Depth:** foreground/middle/background, occlusion, containment, reflection, contact and shadows.
+- **Material and light:** surface roughness, transparency, reflectance, light sources, color temperature.
+- **Hierarchy and context:** what dominates, what supports, and whether the image itself implies a story.
 
-State when a reference is too ambiguous to support a confident claim.
+Separate **observed** (“a railing crosses in front of the window”) from **inferred** (“the place feels contemplative”). Revisit original pixels before consequential new claims. If an element is ambiguous, describe it tentatively rather than inventing its function or identity.
 
-### Multiple visual references
+## Locate the opportunity; protect the source
 
-Assign an explicit role to each: **editable source**, **composition reference**, **stylistic influence**, **specific-detail reference**, or **technical geometry reference**. Do not treat all images as equal-weight sources. Do not copy reference compositions by default; identify their transferable mechanism.
+Identify one or two distinguishing affordances with creative potential. Use [creative-discovery.md](creative-discovery.md) to transform those into concrete imageable ideas. Do not replace a source image's distinctive qualities with generic giant typography, gratuitous effects, or the last successful style.
+
+For an edit target, record:
+
+- **Identity invariants:** user-required subject, geometry, exact visible words and defining relationships.
+- **Allowed changes:** region, material, style, crop, insertions or removals expressly chosen.
+- **Protected successes:** traits of a selected generated result that should survive follow-up.
+- **Uncertainty:** source details not visible or ambiguous.
+
+Do not infer exact sizes or percentages from casual inspection; use metadata if exact dimensions matter. A local edit and a fresh construction from the original are **different tasks**, even if the desired design is similar.
+
+## Extract reusable grammar from multiple style references
+
+When asked to derive a style, distinguish:
+
+1. **Fixed system:** traits visibly repeated across most usable references and essential to recognition.
+2. **Variable system:** traits that vary while the overall visual language remains coherent.
+3. **Sample residue:** specific names, signatures, logos, dates, captions, characters and one-off arrangements not transferable by default.
+
+With **one** reference, report observations as observations—do not fabricate frequency or a proven style-wide rule. Separate measured metadata from approximate visual estimates. Do not copy exact third-party compositions merely because the user requests inspiration.
+
+For a user-owned edit target, keep its identity as directed. For reference-only images, extract the requested visual logic without reproducing its unique content unless separately authorized and appropriate.
 
 ## Route B: no source image
 
-Do not claim to have observed any image. Instead construct a creative brief from what the user actually provided:
-
-- Subject or message.
-- Desired medium and context (poster, scene, illustration, etc.), if known.
-- Mood, narrative, key objects or typography, if stated.
-- Any specified constraints or exclusions.
-
-Then explore visual mechanisms using the same design dimensions—composition, spatial hierarchy, scale, contrast, material, lighting, typography, temporal cues—**without inventing an attached photograph**. Present concrete candidates; let the user shape the result.
-
-## Concept discovery through collaborative dialogue
-
-**Default:** Offer **one concrete, distinctive creative seed at a time**, grounded in an observed image feature or stated user idea. Explain the visual move in a few sentences, invite the user's reaction, and let the next turn be shaped by it. This is creative participation, not a questionnaire. Do not make the user choose between obviously compatible components.
-
-- Change course when the user has a more interesting hypothesis. Offer a useful synthesis or disagree with a reason, not reflexive agreement.
-- Explore unfamiliar materials, visual media and contemporary art approaches alongside typography, narrative and surreal transformations. Let a style choice emerge from its fit to the image's structure, not from a fixed list of fashionable aesthetics.
-- If the proposal is uninteresting, explicitly offer a fresh angle; do not keep nudging the user toward one preferred solution.
-- Multiple directions are appropriate **when requested** or when comparison genuinely helps. Show a small representative spread of distinct mechanisms and their tradeoffs, then recommend without monopolizing the decision.
-- Keep abandoned but promising alternatives lightly available for later; do not carry them into the final prompt without renewed agreement.
-
-A strong idea has an observable mechanism, an image-specific reason to exist, and a visually compelling result. Conceptual justification alone does not make a complex mechanism attractive or executable.
-
-## Knowing when to converge
-
-After a few meaningful exchanges, check whether the main concept has coalesced. **Announce the approaching handoff before it happens**; summarize the central visual relationship and at most one important open issue. The user may reopen, combine, or reject. Do not continue generating questions just to fill time.
-
-A separate design-detail discussion can then settle essential framing, material, hierarchy, text and spatial logic. Again **proactively converge** to a short, coherent execution design. Avoid specifying every minor detail or running a lengthy fixed analysis ritual.
-
-## Interpret feedback without overfitting
-
-- “Ordinary” may indicate a weak premise, a conventional subject–background relation, or a generic hierarchy; ask which feature or propose a meaningful structural alternative.
-- “Too cluttered” may require hierarchy and grouping, not automatic deletion of content.
-- “No story” may require a specific relationship or timing cue, not stock narrative embellishment.
-- “I like the concept but not the result” separates the conceptual plan from execution quality.
-
-A user's preference on one project does not become a global visual style rule. The next project may deliberately favor the opposite density, medium or mood.
-
-## Hand-off to design decisions
-
-After concept convergence and then execution-design convergence, summarize **P0 essentials**, **P1 supporting choices**, and any **P2 options** actually worth preserving. Maintain a lightweight decision ledger: **agreed / tentative / rejected / already successful**. Do not reintroduce superseded elements. These are the inputs to the execution prompt, not the previous exploratory conversation.
+Build from the actual text brief. Identify subject, mood, medium, story and explicit constraints that were supplied. Offer visual opportunities using composition, scale, material, light, typography or timing; do **not** pretend an unseen photo exists. If a complete brief is already given, skip ideation and deliver the requested prompt or execution under the authorization gate.

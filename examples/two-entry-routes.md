@@ -1,50 +1,69 @@
-# Synthetic Walkthroughs: Brief Dialogue, Two Entry Routes
+# Synthetic Walkthroughs — Source, Concept, Prompt, Critique
 
-**Fictional examples only.** No images were generated or benchmarked. These do not reproduce private chats.
+**Fictional demonstrations only.** They are not model-run test results and do not reproduce private user images or chats.
 
-## Route A — Source photo, exploration to two convergences
+## A — Source photo with two adaptive convergences
 
-**User:** [Photo of a rainy tram stop with one bright umbrella.] “Can we make an unusual poster?”
+**User:** [Photo: rainy tram stop, umbrella and a puddle.] “Find an unusual poster idea.”
 
-**Assistant:** “The umbrella is the only clean circle among all those straight wet rails. What if its reflection became a second, impossible umbrella beneath the pavement—like a small opening to another weather system? Interesting, or too surreal?”
+**Assistant / EXPLORE:** “The umbrella makes one clean circular shape amid straight rails. What if only its reflection reveals a different season—blue summer sky inside the puddle? That would use the existing reflection rather than adding a random object. Interesting, or should we change direction?”
 
-**User:** “Interesting, but I want to keep the photographic mood. Maybe only the reflection changes.”
+**User:** “Good, but keep everything else photographic.”
 
-**Assistant:** “Yes: leave the real umbrella untouched; let the reflection reveal a bright summer sky instead of the gray station. The contrast can stay subtle. I think the concept is ready; we can now settle its placement and whether to use text.”
+**Assistant / first convergence:** “Our core event is a summer sky visible only inside the puddle; the rainy station stays unchanged. The concept is coherent. One spatial decision remains: should the reflection align with the umbrella?”
 
-**User:** “No text. Keep it minimal.”
+**User:** “Yes. No typography.”
 
-**Assistant:** “Design convergence: preserve the entire rainy station and umbrella; modify only the puddle reflection with a physically aligned alternate sky; keep everything else subdued. I'll turn that into a complete edit prompt when you ask.”
+**Assistant / second convergence:** “Keep station, rails, umbrella and rain; change only the puddle reflection; align it with the umbrella and surface ripples; no text. Next I can write the self-contained edit prompt.”
 
 **User:** “Write the prompt.”
 
-**Assistant (prompt only, no render):** “Edit the attached rainy tram-stop photograph. Preserve the framing, rails, umbrella, wet pavement, pedestrians and overcast lighting. In the puddle directly beneath the umbrella, replace only the reflected gray sky with a small reflection of bright summer-blue sky and softly lit clouds. Match the puddle's viewing angle, ripple distortion, border and wet-surface reflections; the real sky above remains overcast. Keep the effect limited to the puddle. No typography, other surreal elements, frame or watermark.”
+**Assistant / PROMPT_ONLY:** “Edit the attached original rainy tram-stop photo. Preserve the station, umbrella, camera framing, pedestrians, wet pavement and overcast sky. Change only the puddle directly beneath the umbrella: its rippled surface reflects a small patch of bright blue summer sky with clouds, geometrically aligned to the photographed umbrella and puddle. Maintain the rest of the rain reflections. No added typography or unrelated surreal elements.”
 
 **User:** “Ok.”
 
-**Assistant:** Discusses the prompt or next action **without generating**, because “Ok” is not an explicit execution request.
+**Assistant:** Does **not** generate. The previous prompt and this approval do not constitute explicit execution authorization.
 
-**Later:** If the user explicitly submits the prompt with the required generation authorization, the agent may invoke the image tool.
+## B — Text-first image, no invented photo
 
-## Route B — Text-first concept without a photo
+**User:** “Create a concept about a quiet midnight library; explore first. No photo.”
 
-**User:** “I want an image about a quiet library at midnight. No photo.”
+**Assistant / EXPLORE:** “What if closed books are a city skyline and narrow gaps between their spines are its warm lit windows? We could build the entire scene from layered paper instead of photorealistic shelves.”
 
-**Assistant:** “What if the only visible light came from the spaces between closed books, turning the shelves into a softly glowing city skyline? It could be dreamy without using characters. Does that interest you?”
+**User:** “Paper cutouts, straight-on angle.”
 
-**User:** “Yes. Paper cutouts, not photorealism.”
+**Assistant / convergence and design:** “Then the core is fixed: frontal indigo paper shelves, amber-lit spine gaps, no characters, no text. The layout and medium are settled, so I can move straight to a prompt.”
 
-**Assistant:** “Then we have the core: a midnight library made from deep-blue layered paper; warm windows are narrow gaps between book spines. Concept is settled. I suggest one more decision about viewing angle, then I'll summarize the construction.”
+**User:** “Only write the prompt.”
 
-**User:** “Straight on.”
+**Assistant / PROMPT_ONLY:** Creates a self-contained prompt, without asking for a photo or generating.
 
-**Assistant:** “Design convergence: frontal shelves as a paper skyline, dark indigo layers, warm light from irregular spine gaps, no humans or text. Ready for a prompt.”
+## C — Reference style vs edit target
 
-**When asked for the prompt:** Write a self-contained **text-to-image** prompt. Do not claim a source image exists; do not generate until authorized.
+**User:** “Use my street photograph as the image to redesign. Use the second vintage poster only for its grain and printed edges.”
 
-## What these examples test
+**Assistant:** Labels the street photo as **edit target** and the poster as **style reference**. In the prompt it preserves the street subject/geometry and imports only the second image's grain and edge treatment; it does **not** copy the poster's title, signature, or subject.
 
-- One image-specific or brief-specific visual move per conversational turn, not an unsolicited menu.
-- User feedback actually changes the concept, and the agent proactively marks both convergence points.
-- Few impactful decisions, concise executable prompts, and permission to switch approaches.
-- Prompt drafting, user approval, and **user-authorized generation** remain separate.
+## D — Aesthetics diverge from fidelity; stop or change method
+
+**User:** [Two variants of a translucent bus poster.] “The bus in version 2 is more dimensional, but version 1 feels nicer.”
+
+**Assistant / CRITIQUE:** “Version 2 meets the requested volume change better, but its glossy foreground competes with the clear roadway. Version 1 has stronger material harmony. I'd keep version 1 rather than rerender the whole image just to increase bus relief.”
+
+**User:** “The mixed oil-paint/real petals failed in three independent attempts.”
+
+**Assistant:** Recognizes a repeated failure hypothesis. Instead of adding three more prompt paragraphs, proposes simplifying the visual contrast, changing editing method, or retaining the current best result. Does not autonomously generate.
+
+## E — Approval and quoting are not tool permission
+
+**User:** “Please self-check the text below; it contains my personal image-generation trigger. Do not create an image.”
+
+**Assistant / PROMPT_ONLY:** Critiques the text and makes **zero image-tool calls**.
+
+**User:** “This looks good, continue.”
+
+**Assistant:** Does not generate. If the user later **explicitly submits a current generation request that satisfies their defined trigger**, the assistant may execute exactly that request.
+
+## Behavioral interpretation
+
+These examples illustrate: short meaningful turns, novel user contributions, two **adaptive** convergence checkpoints, source identity, compact prompts, dual-axis critique, and tool authorization. They are demonstrations—not evidence that a model follows these rules.

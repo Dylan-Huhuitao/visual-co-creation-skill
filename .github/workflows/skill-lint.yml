@@ -1,0 +1,21 @@
+name: Static Skill documentation check
+
+on:
+  push:
+    paths:
+      - '**/*.md'
+      - 'scripts/lint_skill.py'
+      - '.github/workflows/skill-lint.yml'
+  pull_request:
+    paths:
+      - '**/*.md'
+      - 'scripts/lint_skill.py'
+      - '.github/workflows/skill-lint.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Skill structure and references
+        run: python3 scripts/lint_skill.py .

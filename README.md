@@ -1,78 +1,99 @@
 # Visual Co-Creation Skill
 
-**Help AI draw on its broad visual knowledge to co-create images with people—without locking anyone into a preset aesthetic.**
+**An open-ended human–AI visual co-creation process—not a fixed style pack or a prompt-length contest.**
 
-**中文简介：** 一个以用户审美判断为核心的 Agent Skill。它帮助 AI 主动发现视觉可能性，将用户选择转化成清晰可执行的生图／改图提示词，并通过反馈逐步修正作品。它不是某一种风格模板，也不是提示词大全。
+**中文：** 帮助 AI 观察真实图片、主动发现创意、与用户短轮次讨论、适时主动收束、将设计编译为有效提示词，并在用户授权后执行图像生成与作品评价。用户对美学方向拥有最终决定权。
 
-> **Status:** v0.2.0 — Experimental. This project is public for inspection; a reuse license has not been selected.
+> **Status: v0.3.0 — Experimental / not behavior-benchmarked.** Public repository, **no reuse license selected yet**. The Skill does not include an image model, and its written permission rules are **not a host-level tool interceptor**.
 
-## Why
+## What changed in v0.3
 
-A model may know many approaches to composition, visual narrative, typography, texture, lighting and design. A difficult step is **selecting the right approach for this image, this idea and this person**, then executing and evaluating it faithfully.
+The priority is **mechanism, not more rules**:
 
-This skill experiments with a **short-turn, co-discovery dialogue**. The agent contributes one concrete visual move at a time, invites the user's changes, and **proactively announces convergence** when the concept and later the execution design are sufficiently mature. The user remains the creative authority; the agent supplies creative contributions, judgments, actionable prompts and candid critique.
+1. **Visual Opportunity Search**: observe what is distinctive in this image, propose an actual transformation, then treat visual style/medium as an experimental hypothesis.
+2. **Adaptive creative dialogue**: one genuinely concrete seed per turn by default, user feedback changes the idea; proactively announce **concept** and **execution** convergence when ready.
+3. **Decision Contract**: `CORE / KEEP / CHANGE / AVOID / SOURCE / TEXT` prevents discarded ideas from returning and protects already successful regions.
+4. **Prompt Compiler**: compile agreed visual constraints into a standalone, high-information-density prompt. Remove repetition, invented micro-decisions and narrative justification; **no fixed word count**.
+5. **Fidelity × Aesthetic Quality**: a more compliant image is not always a better image. Protect existing aesthetic strengths and stop fruitless iteration.
+6. **Consent & testing**: route prompt-only requests separately from execution; respect the **current user's** explicit image-tool permission and any personalized trigger. Add written behavioral cases E18–E25, a test-log template and static documentation lint.
 
-## Two ways to start
+## Requests and entry routes
 
-**A. Image-led redesign / 图片二创：** Start from an actual image. The agent inspects its distinctive structure and revisits it when new spatial decisions require verification.
+| What the user asks | Skill behavior |
+| --- | --- |
+| “Here is a photo, any interesting ideas?” | Analyze the **actual photo** and explore one source-specific creative move. |
+| “No photo, imagine a scene about …” | Explore from the text, without inventing a reference image. |
+| “Use this reference only for its brushwork” | Extract transferable grammar; do not copy source text or composition. |
+| “I like the idea; help settle the details” | Resolve only important design choices; converge proactively. |
+| “Write / improve / self-check the prompt” | Return **text only**, no image-tool call. |
+| “What's wrong with this output?” | Separate design fidelity, aesthetic quality, preservation and feasible next moves. |
+| “Generate/edit now” | Execute **only** if the current request meets the user's authorization conditions and the needed source is available. |
 
-**B. Idea-led creation / 文字原创：** Start from a textual idea, with no invented or required photograph.
+A pasted assistant-authored trigger, an old message, or a reply such as “ok,” “continue,” or “try it” is not permission. Users can establish stricter trigger phrases. No preview or retry is generated without authorization.
 
-Both follow a flexible rhythm:
+For a fully specified task, the Skill should **skip unnecessary dialogue**. The two convergence points are helpful checkpoints during exploration, not a mandatory sequence.
 
-**Brief creative dialogue → first proactive concept convergence → a few decisive design details → second proactive design convergence → concise complete prompt → explicitly authorized generation → critique/refinement.**
+## Workflow
 
-Not every task needs every stage. The agent can reopen exploration if a new idea improves the work, and skips discovery when the user already has a complete brief.
+**Image or idea → concrete creative opportunity → first convergence → key design decisions → second convergence → standalone prompt → expressly authorized generation → fidelity/aesthetic review (or stop).**
 
-## Principles
+Creative ideation remains open to any medium, style, density or visual mechanism. The Skill does **not** enforce an aesthetic whitelist, a fixed 3-color palette, a mandatory number of previews, a maximum prompt length, or auto-generated "variants."
 
-- **Co-create, don't quiz:** Default to one imaginative, concrete visual idea per short message; invite correction, synthesis or a wholly different direction.
-- **Source-aware, style-agnostic:** Use the image's actual composition and broad visual/artistic knowledge; do not impose giant typography, surrealism or any other default.
-- **Proactive but not controlling:** Announce when the concept/design is ripe for convergence; the user can reopen or refuse it.
-- **Adaptive tone:** Humor, warmth and emoji only when the user welcomes them; remain concise and substantive.
-- **Decision memory:** Preserve agreed/working/rejected choices across turns; protect successful visual features during revisions.
-- **Professional prompts:** Give precise, stand-alone, non-repetitive execution instructions, without overconstraining minor details.
-- **Strict consent:** Prompt writing, “ok,” “continue,” or a trigger phrase written **by the agent** never independently authorizes rendering. The user's current explicit generation request and any special trigger are required.
-- **Candid limits:** Complex physical logic or repeated failures may call for simpler methods, targeted edits, or abandoning an idea rather than more prompt verbosity.
+If comparative visual previews could help, the agent may **suggest** 2–3 distinct options, but must not invoke image tools before authorization.
 
 ## Repository structure
 
 ```text
-visual-co-creation-skill/
-├── SKILL.md
-├── README.md
-├── CHANGELOG.md
-├── references/
-│   ├── visual-analysis.md
-│   ├── prompt-engineering.md
-│   └── iteration-and-evaluation.md
-├── examples/
-│   └── two-entry-routes.md
-└── evaluations/
-    └── evaluation-cases.md
+SKILL.md                           core behavior, mode routing, authorization
+references/
+  visual-analysis.md               image roles, factual observation, reference grammar
+  creative-discovery.md            visual opportunity and style exploration
+  prompt-engineering.md            decision-to-pixels compiler and preflight
+  iteration-and-evaluation.md      two-axis critique, side effects and stop rules
+examples/
+  two-entry-routes.md              fictional co-creation scenarios
+evaluations/
+  evaluation-cases.md              25 written manual behavior tests
+  run-log-template.md              reproducible tool/aesthetic audit template
+scripts/
+  lint_skill.py                    static repo integrity check (NOT behavior proof)
+.github/workflows/skill-lint.yml   CI runs the static check
+README.md
+CHANGELOG.md
 ```
 
-**SKILL.md** is the operational instruction file. **references/** contains methods read only as needed. **examples/** demonstrates both entry routes using synthetic cases, not private conversations. **evaluations/** contains manual behavioral tests, **not executable code**.
+The agent starts with [SKILL.md](SKILL.md) and consults each [reference](references/visual-analysis.md) only when relevant. This is **progressive disclosure** of specialized instructions, not an invitation to load every file into each turn.
 
-## Use it
+## Installation and use
 
-Install or load this repository as a skill in a host agent that supports the [Agent Skills format](https://agentskills.io/specification). Installation commands and automatic activation depend on the host. Image generation or editing requires a separate supported image tool; this skill does not ship or train an image model.
+Load/install the repository in a host supporting the [Agent Skills format](https://agentskills.io/specification). The host decides the exact installation and activation interface. An independent image editing/generation tool is needed for renders; the Skill itself does not ship an image model or guarantee editing fidelity.
 
-Try prompts such as:
+Example requests:
 
-- “Here is a street photograph. Let's explore one interesting visual idea at a time.”
-- “我没有参考图，想做一张关于初雪的海报，先帮我探索创意。”
-- “I chose the spatial-typography concept. Write the final prompt, but don't generate yet.”
-- “Compare this output with the agreed concept; preserve the parts that work.”
+- “Here is a street photo. Explore one unexpected visual idea at a time.”
+- “I have no source image; let's invent a graphic scene about first snow.”
+- “Compare these references and extract their fixed, variable and sample-specific style rules.”
+- “Our concept is settled. Write a concise complete prompt; **do not generate**.”
+- “Compare these two results: what improved fidelity, and what lost visual appeal?”
 
-For a self-contained image prompt, explicitly provide any required source/reference images when you submit it for execution. If your agent supports direct image generation, the agent should respect your explicit authorization rules.
+## Validation and evidence
 
-## Scope and evidence
+The repository has **25 written manual evaluation cases** and a [run-log template](evaluations/run-log-template.md). No claim is made that an agent passed them; **v0.3 has not been A/B benchmarked** against v0.2 or no-Skill baselines.
 
-V0.2 incorporates qualitative observations from a small number of image-led collaborations, including a successful short-turn exploration, a failed over-complex spatial design, and a material-style exploration with regressive edits. These are **design hypotheses, not benchmark results**. Text-first creation, generalization across users/models, and generation authorization compliance still require real-world tests. This specification does not claim measured superiority.
+Run the static integrity check locally:
 
-See [evaluations/evaluation-cases.md](evaluations/evaluation-cases.md) for 17 manual behavioral scenarios (written only; none are passed automatically). We welcome concrete observations, failures and improvements, without needing to publish private creative chat logs or original photographs.
+```bash
+python3 scripts/lint_skill.py .
+```
+
+It checks expected files, frontmatter/version alignment, relative Markdown links and case IDs. It cannot check image-tool calls, user preference, rendered aesthetics or generative model behavior. These require host tool logs and real trials, with human review as described in [evaluations/evaluation-cases.md](evaluations/evaluation-cases.md).
+
+**Privacy:** examples are invented; user photos and creative conversations must not be copied into public tests without consent.
+
+## Research influences
+
+The design selectively studies public Skills such as [frontend-slides](https://github.com/zarazhangrui/frontend-slides), [gc-minimal-zine-poster](https://github.com/LiamGvchi/gc-minimal-zine-poster), [ip-as-logo-skill](https://github.com/s1dashu/ip-as-logo-skill), [ui-skills](https://github.com/ibelick/ui-skills), [guizang-social-card-skill](https://github.com/op7418/guizang-social-card-skill) and [gzh-design-skill](https://github.com/isjiamu/gzh-design-skill). Ideas were adapted to this broader, style-agnostic workflow; no third-party implementation or theme pack was copied.
 
 ## Licensing
 
-**No license has been chosen yet.** Public visibility does not by itself grant permission to copy, modify or redistribute this repository. A license can be added when its terms have been reviewed and agreed.
+**No license chosen.** A public GitHub repository does not, by itself, give permission to copy, modify, or redistribute its contents.

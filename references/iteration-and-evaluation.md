@@ -1,62 +1,54 @@
-# Critique, Diagnosis & Iteration
+# Two-Axis Critique, Revision and Stopping
 
-Use after the user shows a result or asks to evaluate a generated image. The benchmark is the **agreed visual intent**, not the agent's taste or average attractiveness.
+Load when a user asks about a generated result, a proposed revision, or repeated failures. Actually inspect the available image(s). The benchmark is the user's agreed design, not the model's favorite style.
 
-## Evaluate in layers
+## Evaluate three separate questions
 
-1. **Core idea:** Is the chosen visual mechanism present, or did the output merely imitate its subject matter?
-2. **Brief fidelity:** Are required and protected elements preserved? Is exact text correct?
-3. **Composition:** Are scale, focal hierarchy, spacing, cropping, depth, foreground/background relations working?
-4. **Physical logic:** Are shadows, reflections, light sources, perspective and occlusion plausible if relevant?
-5. **Material and atmosphere:** Do style, surfaces, texture, color, type, and lighting serve the selected idea?
-6. **Experience:** Does the result communicate its intended impact? This is a reasoned interpretation, not a universal rating.
+**1. Fidelity — Did it do the thing?**
 
-Report a small number of decisive observations, grounded in the visible result. Do not invent visual details you cannot inspect.
+Check the essential visual event, source identity, exact text, geometry, occlusion, and material contrast. Do not grant fidelity merely because the theme or color looks vaguely similar.
 
-## Diagnose before changing
+**2. Aesthetic quality — Is the whole image compelling?**
 
-Possible defect categories:
+Judge spatial hierarchy, stylistic integration, color rhythm, visual surprise and compositional coherence. These are **reasoned, contextual evaluations**, not mechanically objective scores. A locally “fixed” bus, title or flower can lower total quality.
 
-| Type | Example | Response |
+**3. Preservation — Did previous strengths survive?**
+
+Check the user's protected KEEP elements: previously successful materials, contrast, framing, lettering or emotional temperature. A local request is not permission for unrelated redesign.
+
+Make the dual-axis trade-off explicit when it matters: “more compliant, less cohesive” is a meaningful diagnosis.
+
+## Diagnose the likely failure mode
+
+| Likely source | Observable symptom | Proportionate response |
 | --- | --- | --- |
-| Concept | The visual metaphor itself is weak | Reconsider the mechanism with the user |
-| Decision | Selected direction lacks spatial specificity | Resolve composition/causality |
-| Prompt | Clear plan is incompletely communicated | Rewrite concise actionable instruction |
-| Stochastic | Model missed one instruction once | Retry or targeted edit if justified |
-| Capability | Repeated failures on coherent complex geometry | Change strategy: diagram, masks, layers, 3D or manual composition |
-| Preservation | A successful object vanished during a local edit | Explicitly lock protected regions/elements |
+| **Concept** | Device is arbitrary or aesthetically unconvincing even if executed | Reopen ideation if user wants. |
+| **Design** | Contradictory geometry, clutter or poor focal relationships | Simplify relationships or resolve one key dependency. |
+| **Prompt** | Model never received a concrete essential instruction | Rewrite that relation clearly; do not expand everything. |
+| **Stochastic** | A single run misses an otherwise clear constraint | Consider independent reroll **only if authorized**. |
+| **Capability/method** | Same localized geometry or material mix repeatedly fails | Suggest masking, manual compositing, different medium or accepting the best image. |
+| **Source preservation** | A winning region or text is lost during a small fix | Correct the source role and tighten protected region. |
 
-Distinguish diagnosis from certainty. Without controlled tests, “capability limit” is often a plausible explanation, not a proven root cause.
+A repeated failure is evidence for a **hypothesis**, not proof that a model is intrinsically incapable. Distinguish a problem in the aesthetic plan from an execution problem.
 
-## Select edit scale
+## Choose the minimum helpful next move
 
-**Local:** only a small detail is wrong. Specify exactly what changes and protect the rest.
+- **Local:** one feature fails; preserve everything else. Warn if the editing method cannot reliably preserve it.
+- **Structural:** retain concept, change framing/occlusion/material hierarchy.
+- **Conceptual:** user no longer believes in the idea; offer another genuinely different mechanism.
+- **Preserve/stop:** current version is already attractive and another edit has poor expected value.
 
-**Structural:** the central concept is good but layout, light, scale, perspective, or interaction is wrong. Revise those relationships while keeping the concept.
+When asked to revise a prompt, produce a **self-contained** one with the correct chosen base image. When only asked to discuss a result, discuss it; **do not invoke image generation**.
 
-**Conceptual:** the chosen premise is no longer suitable. Explicitly reopen exploration with the user's agreement; do not silently abandon it.
+## Repetition and stopping
 
-## Revision protocol
+After **2–3 materially similar misses** despite a clear requirement, stop treating longer prompts as the default fix. Propose a meaningful strategy change, independent sample (with authorization), simpler concept, selective compositing, preservation of the best result, or ending the project. Do not forcibly cut off exploration if the user wants to continue; offer an informed stop rule and make its rationale clear.
 
-First identify:
+Judge a new result against the **best prior version**, not just the most recent one. A small gain in fidelity does not automatically justify loss of aesthetic unity.
 
-- **Keep:** already successful features.
-- **Fix:** the 1–3 most consequential mismatches.
-- **Why:** likely design, prompting or technical cause.
-- **Do not change:** essential scene and image identity, plus any non-negotiables.
+## Evidence vs narrative
 
-Then produce a new self-contained prompt when the user asks for it. Never make an unrequested image edit in the course of critique. After the revised result is provided, repeat evaluation; check whether previous successes survived.
-
-Avoid endless optimization of low-impact details. Before changing an already attractive result, ask whether the proposed local improvement risks breaking the material/style harmony that made it work. Prefer preserving the winning version rather than treating every request as a full rerender. If new tries repeatedly become less visually convincing, suggest a style-level rethink, a technical alternative, or stopping.
-
-The user need not optimize every artifact. A clearly successful style or visual mechanism may be more valuable than polishing every texture.
-
-## Memory and evidence
-
-Record transferable principles, not private conversations by default. Do not silently export user images or private chat content into public documentation.
-
-For project improvement, log the original goal, selected concept, iterations, failure hypotheses, and outcomes (with user consent where needed). Distinguish verified behavior from anecdotal impressions.
-
-## How to evaluate the skill itself
-
-Test the **agent with the skill versus the same agent without it**, using comparable prompts, tools and time budgets. For images, assess repeated runs because outputs are stochastic. Measure satisfaction, intent fidelity, novelty, revisions required and unwanted changes. Early feedback is exploratory evidence, not proof of general superiority.
+- Report directly visible facts separately from aesthetic interpretation.
+- Make remaining failures explicit without lengthy disclaimers.
+- Track repeatable failure patterns privately with permission; do not publish personal photos/conversations in the Skill repository.
+- For Skill effectiveness, compare enabled vs disabled or V0.2 vs V0.3 under comparable model, prompts and generation budgets; repeated image trials and human preference judgments are necessary to support a measured improvement claim.
